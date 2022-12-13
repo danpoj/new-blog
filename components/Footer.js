@@ -3,12 +3,12 @@ import { RiGithubLine, RiInstagramLine } from 'react-icons/ri'
 
 export default function Footer() {
   return (
-    <div className='flex flex-col gap-2 mb-6'>
-      <div className='flex gap-5 items-end'>
+    <div className='flex flex-col gap-2 mb-6 justify-end h-40'>
+      <div className='flex gap-3 items-end'>
         <Link href='/'>
-          <h1 className='text-3xl font-bold underline'>Danpoj</h1>
+          <h1 className='text-2xl font-bold text-slate-800'>DanPoJ</h1>
         </Link>
-        <div className='flex text-3xl gap-1'>
+        <div className='flex text-2xl gap-1'>
           <a href='https://github.com/danpoj' className='hover:text-slate-500'>
             <RiGithubLine />
           </a>

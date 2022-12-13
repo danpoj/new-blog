@@ -4,11 +4,11 @@ import { RiGithubLine, RiInstagramLine } from 'react-icons/ri'
 export default function Header() {
   return (
     <div className='flex justify-between items-center'>
-      <div className='flex items-end gap-5'>
-        <Link href='/' className='text-3xl font-bold underline'>
-          Danpoj
+      <div className='flex items-center gap-4'>
+        <Link href='/' className='text-3xl font-bold text-slate-800'>
+          DanPoJ
         </Link>
-        <div className='flex text-3xl gap-1'>
+        <div className='flex text-2xl gap-1'>
           <a href='https://github.com/danpoj' className='hover:text-slate-500'>
             <RiGithubLine />
           </a>
@@ -20,7 +20,7 @@ export default function Header() {
           </a>
         </div>
       </div>
-      <div className='flex gap-2'>
+      <div className='flex gap-4'>
         <Link href='/tags' className='text-xl font-light'>
           tags
         </Link>
