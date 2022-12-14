@@ -41,11 +41,12 @@ export default function Post({ post }) {
 }
 
 export async function getStaticPaths() {
-  const posts = await prisma.post.findMany()
-
-  for (let post of posts) {
-    post.createdAt = post.createdAt.toString()
-  }
+  const posts = await prisma.post.findMany({
+    select: {
+      id: true,
+      slug: true,
+    },
+  })
 
   return {
     paths: posts.map((post) => ({
