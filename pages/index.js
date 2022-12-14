@@ -21,9 +21,11 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const prisma = new PrismaClient()
-  const response = await prisma.post.findMany()
+  const posts = await prisma.post.findMany()
 
-  const posts = JSON.parse(JSON.stringify(response))
+  for (let post of posts) {
+    post.createdAt = post.createdAt.toString()
+  }
 
   return {
     props: {

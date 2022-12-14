@@ -43,6 +43,10 @@ export default function Post({ post }) {
 export async function getStaticPaths() {
   const posts = await prisma.post.findMany()
 
+  for (let post of posts) {
+    post.createdAt = post.createdAt.toString()
+  }
+
   return {
     paths: posts.map((post) => ({
       params: {
@@ -54,15 +58,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(ctx) {
-  console.log(ctx)
   const id = +ctx.params.params[0]
 
-  const response = await prisma.post.findUnique({
+  const post = await prisma.post.findUnique({
     where: {
       id,
     },
   })
-  const post = JSON.parse(JSON.stringify(response))
+
+  post.createdAt = post.createdAt.toString()
 
   return {
     props: {
