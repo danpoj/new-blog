@@ -48,8 +48,6 @@ export async function getStaticPaths() {
     },
   })
 
-  // ...
-
   return {
     paths: posts.map((post) => ({
       params: {
@@ -69,11 +67,9 @@ export async function getStaticProps(ctx) {
     },
   })
 
-  post.createdAt = post.createdAt.toString()
-
   return {
     props: {
-      post,
+      post: JSON.parse(JSON.stringify(post)),
     },
     revalidate: 1,
   }

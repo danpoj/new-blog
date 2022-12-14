@@ -23,13 +23,9 @@ export async function getStaticProps() {
   const prisma = new PrismaClient()
   const posts = await prisma.post.findMany()
 
-  for (let post of posts) {
-    post.createdAt = post.createdAt.toString()
-  }
-
   return {
     props: {
-      posts,
+      posts: JSON.parse(JSON.stringify(posts)),
     },
     revalidate: 1,
   }
