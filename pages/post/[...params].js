@@ -48,6 +48,8 @@ export async function getStaticPaths() {
     },
   })
 
+  // ...
+
   return {
     paths: posts.map((post) => ({
       params: {
