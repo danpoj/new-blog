@@ -19,14 +19,16 @@ export default function Home({ posts }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const prisma = new PrismaClient()
   const response = await prisma.post.findMany()
+
   const posts = JSON.parse(JSON.stringify(response))
 
   return {
     props: {
       posts,
     },
+    revalidate: 1,
   }
 }

@@ -1,5 +1,6 @@
 import Layout from '../../components/Layout'
 import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 // import dynamic from 'next/dynamic'
 // import { forwardRef } from 'react'
 
@@ -39,9 +40,22 @@ export default function Post({ post }) {
   )
 }
 
-export async function getServerSideProps(ctx) {
-  const id = +ctx.query.params[0]
-  const prisma = new PrismaClient()
+export async function getStaticPaths() {
+  const posts = await prisma.post.findMany()
+
+  return {
+    paths: posts.map((post) => ({
+      params: {
+        params: [post.id.toString(), post.slug],
+      },
+    })),
+    fallback: true,
+  }
+}
+
+export async function getStaticProps(ctx) {
+  console.log(ctx)
+  const id = +ctx.params.params[0]
 
   const response = await prisma.post.findUnique({
     where: {
@@ -54,5 +68,6 @@ export async function getServerSideProps(ctx) {
     props: {
       post,
     },
+    revalidate: 1,
   }
 }
