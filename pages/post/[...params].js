@@ -14,6 +14,7 @@ const prisma = new PrismaClient()
 // PostEditorForwardedRef.displayName = 'PostEditorForwardedRef'
 
 export default function Post({ post }) {
+  if (post === undefined) return <div>loading...</div>
   return (
     <Layout>
       <div className='flex flex-col items-center mt-4'>
@@ -50,7 +51,7 @@ export async function getStaticPaths() {
         params: [post.id.toString(), post.slug],
       },
     })),
-    fallback: true,
+    fallback: false,
   }
 }
 
