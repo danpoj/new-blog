@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import PostingBtn from '../components/PostingBtn'
 
 export default function Home({ posts }) {
+  console.log(posts[0])
   return (
     <Layout>
       <PostingBtn />
