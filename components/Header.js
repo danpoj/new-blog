@@ -11,8 +11,6 @@ export default function Header() {
   const { data: session, status } = useSession()
   const [isMenuModal, setIsMenuModal] = useState(false)
 
-  console.log(session)
-
   return (
     <div className='flex justify-between items-center'>
       {/* header - left */}
